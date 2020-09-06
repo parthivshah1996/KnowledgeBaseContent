@@ -1,0 +1,39 @@
+
+<div class="container">
+  <h2>Category Table</h2>
+  <a class="btn btn-primary" style="float: right;" href="javascript:void(0);" routerLink="/users/create-category">Create Category</a>
+  <br>
+  <br>
+  <div class="row">
+      <div class="col-md-12 mx-auto">
+        <div class="md-form">
+          <input type="text" [(ngModel)]="search" placeholder="Search...." class="form-control"/>
+        </div>
+      </div>
+    </div>
+    <br>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Category Name</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="categories.length">
+      <tr *ngFor="let category of categories | paginate: { itemsPerPage: 10, currentPage: pageNumber }
+      | searchCategoryFilter:search;let i = index">
+        <td>{{category.name}}</td>
+        <td>{{category.description}}</td>
+        <td> <a class="btn btn-light" (click)="viewCategory(category._id)" href="javascript:void(0);">View</a> | <a class="btn btn-light"
+            (click)="updateCategory(category._id)"
+            href="javascript:void(0);">Edit</a> | <a
+            class="btn btn-light" (click)="delete(category._id)" href="javascript:void(0);">Delete</a></td>
+      </tr>
+    </tbody>
+    <pagination-controls *ngIf="categories.length" (pageChange)="p= $event"></pagination-controls>
+  </table>
+  <div *ngIf="!categories.length">
+    <p class="text-center">No Record Found</p>
+  </div>
+</div>

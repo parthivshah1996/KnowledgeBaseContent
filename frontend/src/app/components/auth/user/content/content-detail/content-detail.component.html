@@ -1,0 +1,38 @@
+<div class="container">
+  <h2> Content Detail</h2>
+  <br />
+  <div class="row">
+    <div class="col-md-6">
+      Content Image
+    </div>
+    <div class="col-md-6">
+      <img *ngIf="!!content.image" width="150px" height="150px"
+        src="{{content.image}}" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      Content Name
+    </div>
+    <div class="col-md-6">
+      {{content.name}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      Content Description
+    </div>
+    <div class="col-md-6">
+      {{content.description}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      Content Type
+    </div>
+    <div class="col-md-6">
+      {{content.type}}
+    </div>
+  </div>
+  <a routerLink="/users/content" class="btn btn-secondary">Back to List</a>
+</div>

@@ -1,0 +1,45 @@
+
+<div class="container">
+  <div  class="row">
+      <div class="col-md-10">
+          <h2>Content Table</h2>
+      </div>
+      <div class="col-md-2">
+          <a class="btn btn-primary" style="float: right;" href="javascript:void(0);" (click)="createContent()">Create Content</a>
+      </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <div class="md-form">
+        <input type="text" [(ngModel)]="search" placeholder="Search...." class="form-control"/>
+      </div>
+    </div>
+  </div>
+  <br>
+  <table class="table z-depth-1">
+    <thead>
+      <tr>
+        <th>Content Name</th>
+        <th>Description</th>
+        <th>Type</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="contents.length">
+      <tr *ngFor="let content of contents | paginate: { itemsPerPage: 10, currentPage: pageNumber }
+      | searchFilter:search;let i = index">
+        <td>{{content.name}}</td>
+        <td>{{content.description}}</td>
+        <td>{{content.type}}</td>
+        <td> <a 
+          class="btn btn-light" target="_blank" rel="noopener noreferrer" (click)="downloadPdf(content.image, content.imageName)" href="javascript:void(0);"> Download File </a> | <a
+            class="btn btn-light" (click)="delete(content._id)" href="javascript:void(0);">Delete</a></td>
+      </tr>
+    </tbody>
+    <pagination-controls *ngIf="contents.length" (pageChange)="p= $event"></pagination-controls>
+  </table>
+  <div *ngIf="!contents.length">
+    <p class="text-center">No Record Found</p>
+  </div>
+</div>
